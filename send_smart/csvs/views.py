@@ -2,20 +2,21 @@ from django.shortcuts import render
 from .forms import CsvModelForm
 from .models import Csv
 import csv
+from django.contrib.auth.models import User
+from contatos.models import Contato
 # Create your views here.
 
 
 def upload_file_view(request):
     form = CsvModelForm (request.POST or None, request.FILES or None)
-    if form.is_valid():
+    if form.is_valid():        
         model=Csv()
         model.arquivo=form.cleaned_data['arquivo']
         model.nome=request.FILES ['arquivo']
         model.save()
-        form=CsvModelForm()
-        # print(request.FILES ['arquivo'])
-        name=request.FILES ['arquivo']
-        obj= Csv.objects.get(ativo=False,nome=name)
+        form= CsvModelForm()
+        obj= Csv.objects.get(ativo=False)
+        
         with open(obj.arquivo.path, 'r') as f:
             reader= csv.reader(f)
 
@@ -23,6 +24,13 @@ def upload_file_view(request):
                 if i==0:
                     pass
                 else:
-                    print(row)
+                    telefone= row[1]
+                    pessoa=row[0]
+                    Contato.objects.create(
+                        nome=pessoa,
+                        contato= telefone,
+                    )
+            obj.ativo=True
+            obj.save()
     return render (request, 'csvs/upload.html',{'form':form})
 
