@@ -8,9 +8,14 @@ import csv
 def upload_file_view(request):
     form = CsvModelForm (request.POST or None, request.FILES or None)
     if form.is_valid():
-        form.save()
+        model=Csv()
+        model.arquivo=form.cleaned_data['arquivo']
+        model.nome=request.FILES ['arquivo']
+        model.save()
         form=CsvModelForm()
-        obj= Csv.objects.get(activated=False)
+        # print(request.FILES ['arquivo'])
+        name=request.FILES ['arquivo']
+        obj= Csv.objects.get(ativo=False,nome=name)
         with open(obj.arquivo.path, 'r') as f:
             reader= csv.reader(f)
 
@@ -20,3 +25,4 @@ def upload_file_view(request):
                 else:
                     print(row)
     return render (request, 'csvs/upload.html',{'form':form})
+
