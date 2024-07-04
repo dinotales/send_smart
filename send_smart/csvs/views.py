@@ -19,7 +19,7 @@ def upload_file_view(request):
             model.save()
             form= CsvModelForm()
             obj= Csv.objects.get(ativo=False)
-            
+            messages.success(request, "Arquivo cadastrado com sucesso")
             with open(obj.arquivo.path, 'r') as f:
                 reader= csv.reader(f)
 
@@ -35,7 +35,8 @@ def upload_file_view(request):
                         )
                 obj.ativo=True
                 obj.save()
+        
         return render (request, 'csvs/upload.html',{'form':form})
     except:
-        messages.error(request, "Já existe esse arquivo cadastrado")
-        return redirect ('/')
+            messages.error(request, "Já existe esse arquivo cadastrado")
+            return redirect ('/')
