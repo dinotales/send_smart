@@ -9,9 +9,11 @@ Página inícial
     {% csrf_token %}
     {{form}}
     {% if messages %}
-            <div class="alert alert-warning" role="alert">
-            {{ m }}
-            </div>
+        {%for message in messages %}
+        <div class="alert alert-warning" role="alert">
+        {{ message }}
+        </div>
+        {%endfor%}
     {% endif %}
     <button type="submit" class="btn btn-info">Confirmar</button>
 </form>
