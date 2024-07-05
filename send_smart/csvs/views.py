@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import CsvModelForm
 from .models import Csv
+from contatos.models import Contato
 import csv
 from django.contrib.auth.models import User
 from contatos.models import Contato
 from django.contrib import messages
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -42,3 +44,6 @@ def upload_file_view(request):
             messages.error(request, "Já existe esse arquivo cadastrado")
             messages.get_messages(request).used=True
             return redirect("/")
+
+class listaContato (ListView):
+     model= Contato

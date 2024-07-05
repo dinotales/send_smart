@@ -16,6 +16,35 @@ Página inícial
         {%endfor%}
     {% endif %}
     <button type="submit" class="btn btn-info">Confirmar</button>
+    
+    <h1>Lista de Contatos</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Contato</th>
+                <th scope="col">Selecionar</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for pessoa in listaContato%}
+            <tr>
+                <th scope="row">{{pessoa.pk}}</th>
+                <td>{{pessoa.nome}}</td>
+                <td>{{pessoa.contato}}</td>
+                <td>
+                    <a href="#" class="btn btn-primary btn-sm">Concluir</a>
+                    <a href="#" class="btn btn-secondary btn-sm">Editar</a>
+                    <a href="#" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {%endfor%}
+        
+            </tbody>
+        </table>
+    
 </form>
+
 
 {% endblock content%}
