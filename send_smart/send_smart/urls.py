@@ -19,9 +19,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('csvs.urls', namespace='csvs')),
+    path('', include('csvs.urls', namespace='csvs'),name='home'),
+    path('contato/', include('contatos.urls', namespace='contato'), name='contato'),
+
 
 ]
 

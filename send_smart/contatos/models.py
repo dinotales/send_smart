@@ -9,6 +9,7 @@ class Contato(models.Model):
     # gestor= models.ForeignKey(User, on_delete=models.CASCADE)
     data_update=models.DateTimeField(auto_now=True)
     data_criacao=models.DateTimeField(auto_now=True)
+    enviar=models.BooleanField(default=False)
 
 
     def __str__ (self):

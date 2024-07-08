@@ -4,14 +4,15 @@ from .models import Csv
 from contatos.models import Contato
 import csv
 from django.contrib.auth.models import User
-from contatos.models import Contato
 from django.contrib import messages
 from django.views.generic import ListView
-
+from django.views.generic import ListView
+from contatos.models import Contato
 # Create your views here.
 
 
-def upload_file_view(request):
+def upload_file_view(request): 
+
     form = CsvModelForm (request.POST or None, request.FILES or None)
     try:
         if form.is_valid():        
@@ -45,5 +46,7 @@ def upload_file_view(request):
             messages.get_messages(request).used=True
             return redirect("/")
 
+
 class listaContato (ListView):
-     model= Contato
+        model= Contato
+

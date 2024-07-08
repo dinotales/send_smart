@@ -1,26 +1,10 @@
-{%extends 'base.html' %}
+`{%extends 'base.html' %}
 
 {%block title%}
 Página inícial
 {%endblock title%}
 
 {% block content%}
-<div>
-<form action="" method="POST" class="ui form" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form}}
-    {% if messages %}
-        {%for message in messages %}
-        <div class="alert alert-warning" role="alert">
-        {{ message }}
-        </div>
-        {%endfor%}
-    {% endif %}
-    <button type="submit" class="btn btn-info">Confirmar</button>
-</form>
-</div>
-
-<!-- <div>
 <h1>Lista de Contatos</h1>
         <table class="table">
             <thead>
@@ -45,7 +29,4 @@ Página inícial
         
             </tbody>
         </table>
-</div> -->
-
-
 {% endblock content%}
