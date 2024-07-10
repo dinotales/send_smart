@@ -7,3 +7,4 @@ class mensagemForms(forms.ModelForm):
         model= mensagem
 
         fields= ('texto',)
+

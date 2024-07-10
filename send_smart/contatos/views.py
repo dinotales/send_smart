@@ -4,6 +4,6 @@ from .models import Contato
 
 # Create your views here.
 
-class listaContato (ListView):
-        model= Contato
-        # template_name='contatos/contato_list.html'
+
+class listaContato(ListView):
+     model=Contato

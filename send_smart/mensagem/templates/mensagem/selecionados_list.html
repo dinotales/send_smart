@@ -1,32 +1,34 @@
-`{%extends 'base.html' %}
+{%extends 'base.html' %}
 
 {%block title%}
 Página inícial
 {%endblock title%}
 
 {% block content%}
-<h1>Lista de Contatos</h1>
-<button type="submit" class="btn btn-info" value="Enviar">Enviar</button>
+<h1>Lista de Selecionados</h1>
+    <div>
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Contato</th>
-                <th scope="col">Selecionar</th>
             </tr>
             </thead>
             <tbody>
-            {%for pessoa in object_list%}
+            
+            {%for selecioando in object_list%}
             <tr>
-                <td>{{pessoa.pk}}</td>
-                <td>{{pessoa.nome}}</td>
-                <td>{{pessoa.contato}}</td>
+                <td>{{selecionado.pk}}</td>
+                <td>{{selecionado.nome}}</td>
+                <td>{{selecionado.contato}}</td>
                 <td>
-                    <input type="checkbox"   class="selecao"  multiple value="{{ True }}" name="selecionar" id="selecionado"></td>
+                </td>
             </tr>
             {%endfor%}
         
             </tbody>
         </table>
+    </div>
+
 {% endblock content%}

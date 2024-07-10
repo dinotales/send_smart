@@ -6,7 +6,6 @@ import csv
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views.generic import ListView
-from django.views.generic import ListView
 from contatos.models import Contato
 # Create your views here.
 
@@ -49,4 +48,5 @@ def upload_file_view(request):
 
 class listaContato (ListView):
         model= Contato
+
 
