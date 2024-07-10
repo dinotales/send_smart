@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('csvs.urls', namespace='csvs'),name='home'),
     path('contato/', include('contatos.urls', namespace='contato'), name='contato'),
+    path('mensagem/', include('mensagem.urls', namespace='mensagem'), name='mensagem'),
 
 
 ]

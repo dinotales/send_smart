@@ -1,0 +1,15 @@
+{%extends 'base.html' %}
+
+{%block title%}
+Página inícial
+{%endblock title%}
+
+{% block content%}
+<div>
+    <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-info">Confirmar</button>
+    </form>
+</div>
+{% endblock content%}

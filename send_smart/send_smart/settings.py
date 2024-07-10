@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'send_smart',
     'csvs',
     'contatos',
+    'mensagem',
 ]
 
 MIDDLEWARE = [
