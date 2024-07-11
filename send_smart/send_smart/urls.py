@@ -26,7 +26,6 @@ urlpatterns = [
     path('', include('csvs.urls', namespace='csvs'),name='home'),
     path('contato/', include('contatos.urls', namespace='contato'), name='contato'),
     path('mensagem/', include('mensagem.urls', namespace='mensagem'), name='mensagem'),
-    path ('selecionados/',listaContato.as_view(), name='lista_selecionados'),
 
 ]
 

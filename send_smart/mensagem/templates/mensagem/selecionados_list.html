@@ -7,28 +7,31 @@ Página inícial
 {% block content%}
 <h1>Lista de Selecionados</h1>
     <div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Contato</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            {%for selecioando in object_list%}
-            <tr>
-                <td>{{selecionado.pk}}</td>
-                <td>{{selecionado.nome}}</td>
-                <td>{{selecionado.contato}}</td>
-                <td>
-                </td>
-            </tr>
-            {%endfor%}
+        <form method="get" action="{% url 'selecionados'%}">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Contato</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                {%for selecioando in object_list%}
+                <tr>
+                    <td>{{selecionado.pk}}</td>
+                    <td>{{selecionado.nome}}</td>
+                    <td>{{selecionado.contato}}</td>
+                    <td>
+                    </td>
+                </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+
+        </form>
         
-            </tbody>
-        </table>
     </div>
 
 {% endblock content%}
