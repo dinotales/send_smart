@@ -1,9 +1,10 @@
 from django import forms
 from .models import Contato
 
-class ContatoForms(forms.ModelForm):
+class ContatoForms(forms.Form):
 
-    class Meta:
-        model= Contato,
-        fields= ('nome','contato')
+
+    nome= forms.CharField(label="Nome",widget=forms.TextInput(attrs={'class':'form=control'}))
+    contato=forms.CharField(label="Contato",widget=forms.TextInput(attrs={'class':'form=control'}))
+    selecionado=forms.MultipleChoiceField(label="status", widget = forms.CheckboxSelectMultiple)
 

@@ -18,14 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from mensagem.views import listaContato
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('csvs.urls', namespace='csvs'),name='home'),
-    path('contato/', include('contatos.urls', namespace='contato'), name='contato'),
-    path('mensagem/', include('mensagem.urls', namespace='mensagem'), name='mensagem'),
+    path('', include('csvs.urls')),
+    path('contato/', include('contatos.urls')),
+    path('mensagem/', include('mensagem.urls')),
 
 ]
 

@@ -1,0 +1,50 @@
+
+<h1>Lista de Contatos</h1>
+<button class="btn btn-info" hx-post="http://127.0.0.1:8000/contato/selecionados"
+hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>Selecionar</button>
+
+{% csrf_token %}
+    <form id="checked-contatos">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Contato</th>
+                <th>
+                    <input type="checkbox" class="form-check-input" id="selectAll" />
+                </th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            {%for contato in contatos%}
+            <tr id="contato-{{contato.pk}}" class="contato-row">
+                <td>{{contato.pk}}</td>
+                <td>{{contato.nome}}</td>
+                <td>{{contato.contato}}</td>
+                <td>
+                     <input type='checkbox' name='check[]' value='{{contato.pk}}'>
+                </td>
+            </tr>
+            {%endfor%}
+        
+            </tbody>
+        </table>
+    </form> 
+    <script>
+
+        $('#selectAll').click(function (e) {
+            if (this.checked) {
+                // Iterate each checkbox
+                $(':checkbox').each(function () {
+                    this.checked = true;
+                });
+            } else {
+                $(':checkbox').each(function () {
+                    this.checked = false;
+                });
+            }
+        });
+    
+    </script>

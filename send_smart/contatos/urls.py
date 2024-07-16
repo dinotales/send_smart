@@ -1,10 +1,12 @@
 from django.urls import path
-from .views import listaContato
+from .views import cadastradoContatos, selecionar
 
 app_name='contatos'
 
 urlpatterns=[
-    path('',listaContato.as_view(), name='lista_contato'),
+    path('',cadastradoContatos, name='lista_contato'),
+    path('selecionados',selecionar, name='lista_selecionados'),
+
 
 
 ]

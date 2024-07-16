@@ -1,10 +1,8 @@
 from django.urls import path
-from mensagem.views import enviar, listagem
+from mensagem.views import enviar
 
 app_name='mensagem'
 
 urlpatterns=[
     path ('',enviar, name='mensagem'),
-    path('selecionados/',listagem.as_view(), name='selecionados')
-
 ]
