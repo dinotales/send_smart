@@ -46,7 +46,4 @@ def upload_file_view(request):
             return redirect("/")
 
 
-class listaContato (ListView):
-        model= Contato
-
 

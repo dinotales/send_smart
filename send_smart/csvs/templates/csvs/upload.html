@@ -5,48 +5,25 @@ Página inícial
 {%endblock title%}
 
 {% block content%}
-<div>
-<form action="" method="POST" class="ui form" enctype="multipart/form-data">
+<div class="container-fluid" id="formulario">
+<form action="" method="POST" class="form-group" enctype="multipart/form-data">
     {% csrf_token %}
-    {{form}}
+    {{form.as_p}}
     {% if messages %}
         {%for message in messages %}
         <div class="alert alert-warning" role="alert">
         {{ message }}
         </div>
         {%endfor%}
-    {% endif %}
+    {% endif %}    
     <button type="submit" class="btn btn-info">Confirmar</button>
 </form>
 </div>
+<div hx-trigger="load, bookListChanged from:body" hx-get="http://127.0.0.1:8000/contato" hx-target="this">
+    <span >Loading...</span>
+</div>
 
 
-<!-- <div>
-<h1>Lista de Contatos</h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Contato</th>
-                <th scope="col">Selecionar</th>
-            </tr>
-            </thead>
-            <tbody>
-            {%for pessoa in object_list%}
-            <tr>
-                <td>{{pessoa.pk}}</td>
-                <td>{{pessoa.nome}}</td>
-                <td>{{pessoa.contato}}</td>
-                <td>
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                </td>
-            </tr>
-            {%endfor%}
-        
-            </tbody>
-        </table>
-</div> -->
 
 
 {% endblock content%}
