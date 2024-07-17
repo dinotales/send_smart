@@ -1,10 +1,8 @@
-
 <h1>Lista de Contatos</h1>
-<button class="btn btn-info" hx-post="http://127.0.0.1:8000/contato/selecionados"
-hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>Selecionar</button>
 
-{% csrf_token %}
-    <form id="checked-contatos">
+    <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-info">Confirmar</button>
         <table class="table">
             <thead>
             <tr>
@@ -19,16 +17,15 @@ hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>Selecionar</button>
             </thead>
             <tbody>
             {%for contato in contatos%}
-            <tr id="contato-{{contato.pk}}" class="contato-row">
+            <tr>
                 <td>{{contato.pk}}</td>
                 <td>{{contato.nome}}</td>
                 <td>{{contato.contato}}</td>
                 <td>
-                     <input type='checkbox' name='check[]' value='{{contato.pk}}'>
-                </td>
+                     <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}'></input>
+                <td>
             </tr>
             {%endfor%}
-        
             </tbody>
         </table>
     </form> 

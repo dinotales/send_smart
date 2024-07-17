@@ -7,18 +7,21 @@ import json
 
 
 def cadastradoContatos(request):
-    contatos=Contato.objects.all()
-
-    return render (request,"contatos/contatos_list.html",{'contatos':contatos})
-
-def selecionar(request):
-
-    if request.method== 'POST':
+    # contatos=Contato.objects.all()
+    if request.POST:
         x=request.POST.getlist('check[]')
         print(x)
+        contatos=Contato.objects.filter(id__in=x)
 
-    # check= request.POST.getlist('checks[]')
-    # print(check)  
+    else:
+        contatos=Contato.objects.all()
 
-    return render (request,"contatos/contatos_list.html")
+    # print(contatos)
+    return render (request,"contatos/contatos_list.html",{'contatos':contatos})
+
+# def selecionar(request):
+
+#     x=request.POST.getlist('check[]')
+#     print(x)
+#     return redirect('/',lista=x)
 
