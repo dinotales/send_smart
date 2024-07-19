@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.template import loader
-from .forms import mensagemForms, selecionadoForms
-from .models import mensagem,Selecionados
+from .forms import mensagemForms
+from .models import mensagem
 from contatos.models import Contato
 from django.views.generic import ListView
 
@@ -16,6 +16,7 @@ def enviar (request):
         print(form.cleaned_data['texto']) 
 
     return render (request, 'mensagem/texto.html',{'form':form})
+
 
 
   

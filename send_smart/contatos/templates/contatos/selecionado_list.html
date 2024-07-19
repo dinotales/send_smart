@@ -1,0 +1,29 @@
+{%extends 'base.html' %}
+
+{%block title%}
+Pagina de contato
+{%endblock title%}
+{% block content%}
+
+<a class="nav-link active" href="http://127.0.0.1:8000/mensagem">mensagem</a>
+
+<h1>Lista de selecionados</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Contato</th>            
+            </tr>
+            </thead>
+            <tbody>
+            {%for contato in contatos%}
+            <tr>
+                <td>{{contato.pk}}</td>
+                <td>{{contato.nome}}</td>
+                <td>{{contato.contato}}</td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+{% endblock content%}

@@ -9,32 +9,8 @@ Página inícial
     <form action="" method="POST" class="ui form" enctype="multipart/form-data">
         {% csrf_token %}
         {{form}}
-        <button type="submit" class="btn btn-info">Confirmar</button>
+        <button type="submit" class="btn btn-info">Enviar</button>
     </form>
 </div>
-<!-- <div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Contato</th>
-        </tr>
-        </thead>
-        <tbody>
-        
-        {%for selecioando in object_list%}
-        <tr>
-            <td>{{selecionado.pk}}</td>
-            <td>{{selecionado.nome}}</td>
-            <td>{{selecionado.contato}}</td>
-            <td>
-            </td>
-        </tr>
-        {%endfor%}
-    
-        </tbody>
-    </table>
-</div> -->
 
 {% endblock content%}

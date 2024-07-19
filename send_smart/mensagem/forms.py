@@ -1,18 +1,15 @@
 from django import forms
-from .models import mensagem, Selecionados
 
-class mensagemForms(forms.ModelForm):
+class mensagemForms(forms.Form):
 
-    class Meta:
-        model= mensagem
+    texto= forms.CharField (widget=forms.TextInput(attrs={'class':'form-control'}))
 
-        fields= ('texto',)
 
-class selecionadoForms(forms.ModelForm):
+# class selecionadoForms(forms.ModelForm):
 
-    class Meta:
-        model= Selecionados
+#     class Meta:
+#         model= Selecionados
 
-        fields= ('nome',)
+#         fields= ('nome',)
 
 

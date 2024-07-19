@@ -1,13 +1,13 @@
 {%extends 'base.html' %}
 
 {%block title%}
-Pagina de contato
+Página inícial
 {%endblock title%}
-{% block content%}
 
+{% block content%}
 <h1>Lista de Contatos</h1>
 
-    <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/">
+    <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/selecionados">
         {% csrf_token %}
         <button type="submit" class="btn btn-success">Selecionar</button>
         <table class="table">
