@@ -1,6 +1,5 @@
 from django.urls import path
 from .views import cadastradoContatos,selecionar
-from mensagem.views import enviar
 
 app_name='contatos'
 

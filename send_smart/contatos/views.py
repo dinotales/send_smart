@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponse
 from .models import Contato
 from .forms import ContatoForms
 from mensagem.forms import mensagemForms
@@ -23,8 +23,9 @@ def cadastradoContatos(request):
 
 def selecionar(request):
     if request.POST:
-        x=request.POST.getlist('check[]')
-        print(x)
+        x= request.POST.getlist('check[]')
+        # print(x)
         contatos=Contato.objects.filter(id__in=x)
-        return render (request,"contatos/selecionado_list.html",{'contatos':contatos})
-
+        request.session ['x']=x
+    
+    return render (request,"contatos/selecionado_list.html",{'contatos':contatos})
