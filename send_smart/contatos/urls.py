@@ -5,7 +5,7 @@ app_name='contatos'
 
 urlpatterns=[
     path('',cadastradoContatos, name='lista_contato'),
-    path('selecionados',selecionar, name='lista_contato'),
+    path('selecionados',selecionar, name='lista_selecionados'),
 
 
 

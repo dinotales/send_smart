@@ -12,13 +12,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 # Create your views here.
 def enviar (request):
     form= mensagemForms(request.POST)
+    x=request.session['x']
+    contatos=Contato.objects.filter(id__in=x)
 
     if form.is_valid():
 
         mensagem= form.cleaned_data['texto'] 
-        x=request.session['x']
-        contatos=Contato.objects.filter(id__in=x)
-        # print(contatos.get('nome'))
         navegador=webdriver.Chrome()
         navegador.get('https://web.whatsapp.com/')
 
@@ -40,7 +39,7 @@ def enviar (request):
             time.sleep(10)
 
 
-    return render (request, 'mensagem/texto.html',{'form':form})    
+    return render (request, 'mensagem/texto.html',{'form':form, 'contatos':contatos})    
 
     
 

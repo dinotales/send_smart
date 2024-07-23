@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,HttpResponse
+from django.shortcuts import render, redirect,HttpResponseRedirect
 from .models import Contato
 from .forms import ContatoForms
 from mensagem.forms import mensagemForms
@@ -28,4 +28,4 @@ def selecionar(request):
         contatos=Contato.objects.filter(id__in=x)
         request.session ['x']=x
     
-    return render (request,"contatos/selecionado_list.html",{'contatos':contatos})
+    return redirect ("http://127.0.0.1:8000/mensagem")

@@ -12,5 +12,25 @@ Página inícial
         <button type="submit" class="btn btn-info">Enviar</button>
     </form>
 </div>
-
+<div>
+    <h1>Lista de selecionados</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Contato</th>            
+            </tr>
+            </thead>
+            <tbody>
+            {%for contato in contatos%}
+            <tr>
+                <td>{{contato.pk}}</td>
+                <td>{{contato.nome}}</td>
+                <td>{{contato.contato}}</td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+</div>
 {% endblock content%}
