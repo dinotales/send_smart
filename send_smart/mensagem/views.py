@@ -5,7 +5,9 @@ from contatos.models import Contato
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
-# from selenium.webdriver.common.key import Keys
+import urllib
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait
 
 # Create your views here.
 def enviar (request):
@@ -16,12 +18,26 @@ def enviar (request):
         mensagem= form.cleaned_data['texto'] 
         x=request.session['x']
         contatos=Contato.objects.filter(id__in=x)
-        print(contatos)
+        # print(contatos.get('nome'))
         navegador=webdriver.Chrome()
         navegador.get('https://web.whatsapp.com/')
 
         while len(navegador.find_elements(By.ID, "side"))<1:
             time.sleep(1)
+
+        for contato in contatos:
+            pessoa=contato.nome
+            numero=contato.contato
+            texto= urllib.parse.quote(f"Olá, {pessoa}\n {mensagem}")
+            link=f"https://web.whatsapp.com/send?phone={numero}&text={texto}"
+            navegador.get(link)
+            while len(navegador.find_elements(By.ID, "side"))<1:
+                time.sleep(1)
+            wait = WebDriverWait(navegador, 10)
+            wait.until (lambda navegador: navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div/p[1]'))
+            input=navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div/p[1]')
+            input.send_keys (Keys.ENTER)
+            time.sleep(10)
 
 
     return render (request, 'mensagem/texto.html',{'form':form})    
