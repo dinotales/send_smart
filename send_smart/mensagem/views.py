@@ -8,6 +8,7 @@ import time
 import urllib
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
+# import math
 
 # Create your views here.
 def enviar (request):
@@ -27,7 +28,7 @@ def enviar (request):
         for contato in contatos:
             pessoa=contato.nome
             numero=contato.contato
-            texto= urllib.parse.quote(f"Olá, {pessoa}\n {mensagem}")
+            texto= urllib.parse.quote(f"*Olá, {pessoa}!*\n\n Tudo bem?\n {mensagem}")
             link=f"https://web.whatsapp.com/send?phone={numero}&text={texto}"
             navegador.get(link)
             while len(navegador.find_elements(By.ID, "side"))<1:

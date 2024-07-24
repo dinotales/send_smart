@@ -38,8 +38,8 @@ def upload_file_view(request):
                         )
                 obj.ativo=True
                 obj.save()
-    
-        return render (request, 'csvs/upload.html',{'form':form})
+        contatos=Contato.objects.all()
+        return render (request, 'csvs/upload.html',{'form':form,'contatos':contatos})
     except:
             messages.error(request, "Já existe esse arquivo cadastrado")
             messages.get_messages(request).used=True
