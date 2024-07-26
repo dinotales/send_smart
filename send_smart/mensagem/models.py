@@ -4,5 +4,5 @@ from django.db import models
 
 class mensagem (models.Model):
 
-    texto= models.CharField (max_length=500)
+    texto= models.CharField (max_length=500, blank=True, null=True)
     ativo= models.BooleanField(default=False)
