@@ -13,6 +13,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 # Create your views here.
 def enviar (request):
     form= mensagemForms(request.POST)
+    print(form)
     x=request.session['x']
     contatos=Contato.objects.filter(id__in=x)
 
@@ -44,11 +45,12 @@ def enviar (request):
 
 def enviarImagem(request):
 
-        form= imagemForms(request.POST)
+        form= imagemForms(request.POST, request.FILES)
         x=request.session['x']
         contatos=Contato.objects.filter(id__in=x)
 
         if form.is_valid():
+            imagem=form.cleaned_data.get('imagem')
             navegador=webdriver.Chrome()
             navegador.get('https://web.whatsapp.com/')
 
@@ -56,12 +58,16 @@ def enviarImagem(request):
                 time.sleep(1)
 
             for contato in contatos:
-                navegador.find_element_by_css_selector("span[data-icon='clip']").click()
-                attach = navegador.find_element_by_css_selector("input[type='file']")
+                wait = WebDriverWait(navegador, 10)
+                wait.until (lambda navegador: navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/div/span'))
+                navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/div/span').Click()
+                attach = navegador.find_element(By.CSS_SELECTOR,"input[type='file']")
                 attach.send_keys(request)
                 time.sleep(3)
-                send = driver.find_element_by_css_selector("span[data-icon='send']")
-                send.click() 
+                send = navegador.find_element(By.XPATH,'//*[@id="app"]/div/div[2]/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div/span')
+                send.send_keys (Keys.ENTER)
+
+        return render (request, 'mensagem/image.html',{'form':form, 'contatos':contatos})
 
 
   
