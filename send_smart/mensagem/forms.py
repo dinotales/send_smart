@@ -7,6 +7,12 @@ class mensagemForms(forms.Form):
                             attrs={'class':'form-control',
                                    'rows': 3
                                    }))
-
+   
+class imagemForms(forms.Form):
+   
+   imagem= forms.ImageField (label='',
+                              widget=forms.FileInput
+                              (attrs={'class':'form-control'})
+                              )
 
 

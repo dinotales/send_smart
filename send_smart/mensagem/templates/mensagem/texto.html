@@ -17,6 +17,13 @@ Página inícial
     </form>
 </div>
 <div>
+    <form action="http://127.0.0.1:8000/mensagem/imagem" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-info">Enviar imagem</button>
+    </form>
+</div>
+<div>
     <h1>Lista de selecionados</h1>
     <a class="btn btn-secondary" href="http://127.0.0.1:8000/" role="button">Selecionar novamente</a>
         <table class="table">

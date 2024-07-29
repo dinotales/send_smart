@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .forms import mensagemForms
+from django.shortcuts import render, redirect
+from .forms import mensagemForms, imagemForms
 from contatos.views import selecionar
 from contatos.models import Contato
 from selenium import webdriver
@@ -40,9 +40,29 @@ def enviar (request):
             time.sleep(10)
 
 
-    return render (request, 'mensagem/texto.html',{'form':form, 'contatos':contatos})    
+    return render (request, 'mensagem/texto.html',{'form':form, 'contatos':contatos})
 
-    
+def enviarImagem(request):
+
+        form= imagemForms(request.POST)
+        x=request.session['x']
+        contatos=Contato.objects.filter(id__in=x)
+
+        if form.is_valid():
+            navegador=webdriver.Chrome()
+            navegador.get('https://web.whatsapp.com/')
+
+            while len(navegador.find_elements(By.ID, "side"))<1:
+                time.sleep(1)
+
+            for contato in contatos:
+                navegador.find_element_by_css_selector("span[data-icon='clip']").click()
+                attach = navegador.find_element_by_css_selector("input[type='file']")
+                attach.send_keys(request)
+                time.sleep(3)
+                send = driver.find_element_by_css_selector("span[data-icon='send']")
+                send.click() 
+
 
   
 
