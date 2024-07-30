@@ -1,0 +1,15 @@
+{%extends 'base.html' %}
+
+{%block title%}
+Página inícial
+{%endblock title%}
+
+{% block content%}
+<div>
+    <form action="http://127.0.0.1:8000/mensagem/upload" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-info">Enviar imagem</button>
+    </form>
+</div>
+{% endblock content%}

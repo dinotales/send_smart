@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import mensagem
+from .models import imagem
 
 # Register your models here.
-admin.site.register(mensagem)
+admin.site.register(imagem)

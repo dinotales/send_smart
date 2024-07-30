@@ -7,8 +7,6 @@ Página inícial
 {% block content%}
 <div>
     <form action="http://127.0.0.1:8000/mensagem/imagem" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form}}
         <button type="submit" class="btn btn-info">Enviar imagem</button>
     </form>
 </div>
