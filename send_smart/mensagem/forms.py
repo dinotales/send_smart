@@ -16,4 +16,6 @@ class imagemForms(forms.Form):
                               )
 
 
+class enviarForms(forms.Form):
 
+    enviar=forms.BooleanField(label='')

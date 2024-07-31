@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import mensagemForms, imagemForms
+from .forms import mensagemForms, imagemForms, enviarForms
 from contatos.views import selecionar
 from contatos.models import Contato
 from mensagem.models import imagem
@@ -47,37 +47,49 @@ def enviar (request):
 def upload_image(request):
     form= imagemForms(request.POST, request.FILES)
     if form.is_valid():
+            delet=imagem.objects.all()
+            delet.delete()
             model=imagem()
             model.imagem=form.cleaned_data.get('imagem')
-            model.save()        
-    return render (request, 'mensagem/upload_img.html',{'form':form})
-# def enviarImagem(request):
+            model.save()
+    imagens=imagem.objects.all()        
+    return render (request, 'mensagem/upload_img.html',{'form':form, 'imagens':imagens})
+imagens=imagem.objects.all() 
+for img in imagens:
+    print(img.imagem)
 
-#         x=request.session['x']
-#         contatos=Contato.objects.filter(id__in=x)
+def enviarImagem(request):
 
-#         navegador=webdriver.Chrome()
-#         navegador.get('https://web.whatsapp.com/')
+        x=request.session['x']
+        contatos=Contato.objects.filter(id__in=x)
+        imagens=imagem.objects.all()
+        caminho="C:/Users/note/Desktop/teste/ilustracao.png" 
+        form=enviarForms(request.POST)
+        if form.is_valid():
 
-#         while len(navegador.find_elements(By.ID, "side"))<1:
-#             time.sleep(1)
+            navegador=webdriver.Chrome()
+            navegador.get('https://web.whatsapp.com/')
 
-#         for contato in contatos:
-#             numero=contato.contato
-#             link=f"https://web.whatsapp.com/send?phone={numero}"
-#             navegador.get(link)
-#             wait = WebDriverWait(navegador, 10)
-#             wait.until (lambda navegador: navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/div/span'))
-#             navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/div/span').click()
-#             wait = WebDriverWait(navegador, 10)
-#             wait.until (lambda navegador: navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[1]/li/div/span'))
-#             attach = navegador.find_element(By.CSS_SELECTOR,"input[type='file']")
-#             attach.send_keys(imagem)
-#             time.sleep(3)
-#             send = navegador.find_element(By.XPATH,'//*[@id="app"]/div/div[2]/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div/span')
-#             send.send_keys (Keys.ENTER)
+            while len(navegador.find_elements(By.ID, "side"))<1:
+                time.sleep(1)
 
-#         return render (request, 'mensagem/image.html',{'form':form, 'contatos':contatos})
+            for contato in contatos:
+                numero=contato.contato
+                link=f"https://web.whatsapp.com/send?phone={numero}"
+                navegador.get(link)
+                wait = WebDriverWait(navegador, 10)
+                wait.until (lambda navegador: navegador.find_element(By.CSS_SELECTOR,"span[data-icon='plus']"))
+                navegador.find_element(By.CSS_SELECTOR,"span[data-icon='plus']").click()
+                wait = WebDriverWait(navegador, 10)
+                wait.until (lambda navegador: navegador.find_element(By.CSS_SELECTOR,"input[type='file']"))
+                navegador.find_element(By.CSS_SELECTOR,"input[type='file']").click()
+                # wait = WebDriverWait(navegador, 10)
+                # wait.until (lambda navegador: navegador.find_element(By.CSS_SELECTOR,"input[type='file']"))
+                # attach.send_keys("C:/Users/note/Desktop/teste/ilustracao.png")
+                # time.sleep(3)
+                # navegador.find_element(By.CSS_SELECTOR,"span[data-icon='send-light']").click()
+
+        return render (request, 'mensagem/image.html',{'form':form, 'contatos':contatos})
 
 
   

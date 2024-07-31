@@ -11,5 +11,29 @@ Página inícial
         {{form}}
         <button type="submit" class="btn btn-info">Enviar imagem</button>
     </form>
+    
+</div>
+<div>
+    <h1>Lista de selecionados</h1>
+        <table class="table">
+            <!-- <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Imagem</th>
+                <th scope="col">Selecionar</th>            
+            </tr>
+            </thead> -->
+            <tbody>
+                {%for imagem in imagens%}
+                    <td>{{imagem.pk}}</td>
+                    <td><img src="{{imagem.imagem.url}}"></td>
+                    <td>
+                        <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}' id="checkbox"></input>
+                    <td>
+                {%endfor%}
+
+
+            </tbody>
+    
 </div>
 {% endblock content%}
