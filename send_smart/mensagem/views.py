@@ -80,14 +80,12 @@ def enviarImagem(request):
                 wait = WebDriverWait(navegador, 10)
                 wait.until (lambda navegador: navegador.find_element(By.CSS_SELECTOR,"span[data-icon='plus']"))
                 navegador.find_element(By.CSS_SELECTOR,"span[data-icon='plus']").click()
-                wait = WebDriverWait(navegador, 10)
-                wait.until (lambda navegador: navegador.find_element(By.CSS_SELECTOR,"input[type='file']"))
-                navegador.find_element(By.CSS_SELECTOR,"input[type='file']").click()
-                # wait = WebDriverWait(navegador, 10)
-                # wait.until (lambda navegador: navegador.find_element(By.CSS_SELECTOR,"input[type='file']"))
-                # attach.send_keys("C:/Users/note/Desktop/teste/ilustracao.png")
-                # time.sleep(3)
-                # navegador.find_element(By.CSS_SELECTOR,"span[data-icon='send-light']").click()
+                attach=navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[2]/li/div/input')
+                attach.send_keys("/home/tsuyoshi/code/ilustracao.png")
+                wait =WebDriverWait(navegador, 10)
+                wait.until(lambda navegador: navegador.find_element(By.CSS_SELECTOR,"span[data-icon='send']"))
+                navegador.find_element(By.CSS_SELECTOR,"span[data-icon='send']").click()
+                
 
         return render (request, 'mensagem/image.html',{'form':form, 'contatos':contatos})
 
