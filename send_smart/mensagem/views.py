@@ -14,7 +14,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 # Create your views here.
 def enviar (request):
     form= mensagemForms(request.POST)
-    print(form)
     x=request.session['x']
     contatos=Contato.objects.filter(id__in=x)
 

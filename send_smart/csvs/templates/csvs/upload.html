@@ -20,38 +20,40 @@ Página inícial
 </form>
 </div>
 <div>
-<h1>Lista de Contatos</h1>
+    {%if contatos%}
+        Numero de contatos:{{contatos|length}}
+        <h1>Lista de Contatos</h1>
 
-<form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/selecionados">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-success">Selecionar</button>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Contato</th>
-            <th>
-                <input type="checkbox" class="form-check-input" id="selectAll">
-            </th>
+        <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/selecionados">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Selecionar</button>
             
-        </tr>
-        </thead>
-        <tbody>
-        {%for contato in contatos%}
-        <tr>
-            <td>{{contato.pk}}</td>
-            <td>{{contato.nome}}</td>
-            <td>{{contato.contato}}</td>
-            <td>
-                    <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}' id="checkbox"></input>
-            <td>
-        </tr>
-        {%endfor%}
-        </tbody>
-    </table>
-    
-</form> 
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Contato</th>
+                        <th>
+                            <input type="checkbox" class="form-check-input" id="selectAll">
+                        </th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%for contato in contatos%}
+                    <tr>
+                        <td>{{contato.pk}}</td>
+                        <td>{{contato.nome}}</td>
+                        <td>{{contato.contato}}</td>
+                        <td>
+                                <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}' id="checkbox"></input>
+                        <td>
+                    </tr>
+                    {%endfor%}
+                    </tbody>
+                </table>
+        </form> 
 <script>
     document.getElementById('selectAll')
               .addEventListener('change', function () {
@@ -79,6 +81,8 @@ Página inícial
     });
 
 </script> -->
-  
+{%else%}
+            
+{% endif %}  
 </div>
 {% endblock content%}

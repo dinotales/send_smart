@@ -17,25 +17,30 @@ Página inícial
     </form>
 </div>
 <div>
-    <h1>Lista de selecionados</h1>
-    <a class="btn btn-secondary" href="http://127.0.0.1:8000/" role="button">Selecionar novamente</a>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Contato</th>            
-            </tr>
-            </thead>
-            <tbody>
-            {%for contato in contatos%}
-            <tr>
-                <td>{{contato.pk}}</td>
-                <td>{{contato.nome}}</td>
-                <td>{{contato.contato}}</td>
-            </tr>
-            {%endfor%}
-            </tbody>
-        </table>
+    {%if contatos%}
+        Numero de contatos:{{contatos|length}}
+        <h1>Lista de selecionados</h1>
+        <a class="btn btn-secondary" href="http://127.0.0.1:8000/" role="button">Selecionar novamente</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Contato</th>            
+                </tr>
+                </thead>
+                <tbody>
+                {%for contato in contatos%}
+                <tr>
+                    <td>{{contato.pk}}</td>
+                    <td>{{contato.nome}}</td>
+                    <td>{{contato.contato}}</td>
+                </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+    {%else%}
+        
+    {% endif %}
 </div>
 {% endblock content%}
