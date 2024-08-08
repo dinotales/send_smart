@@ -5,22 +5,36 @@ Página inícial
 {%endblock title%}
 
 {% block content%}
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Subtitulo do card</h6>
-      <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-      <a href="#" class="card-link">Link do card</a>
-      <a href="#" class="card-link">Outro link</a>
-    </div>
+<div class="container mt-5 mb-3">
+  <div class="row">
+      <div class="col-md-4">
+          <div class="card p-3 mb-2">
+              <div class="card-body">
+                <h5 class="card-title">Upload</h5>
+                <p class="card-text">Fazer upload de arquivos csv</p>
+                <a href="http://127.0.0.1:8000/upload" class="btn btn-primary">Entrar</a>
+              </div>
+            </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card p-3 mb-2">
+            <div class="card-body">
+              <h5 class="card-title">Mensagem</h5>
+              <p class="card-text">Enviar mensagem para contatos selecionados</p>
+              <a href="http://127.0.0.1:8000/mensagem/" class="btn btn-primary">Entrar</a>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card p-3 mb-2">
+            <div class="card-body">
+              <h5 class="card-title">Lista de contatos</h5>
+              <p class="card-text">Lista de contatos para envio de mensagem</p>
+              <a href="http://127.0.0.1:8000/contato/" class="btn btn-primary">Entrar</a>
+            </div>
+          </div>
+      </div>
   </div>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Título do card</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Subtitulo do card</h6>
-      <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-      <a href="#" class="card-link">Link do card</a>
-      <a href="#" class="card-link">Outro link</a>
-    </div>
-  </div>
+</div>
+  
 {% endblock content%}
