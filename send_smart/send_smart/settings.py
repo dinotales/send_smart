@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'csvs',
     'contatos',
     'mensagem',
+    'inicio',
 ]
 
 MIDDLEWARE = [
