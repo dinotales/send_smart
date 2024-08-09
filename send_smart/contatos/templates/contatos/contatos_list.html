@@ -1,15 +1,25 @@
 {%extends 'base.html' %}
-
+{% load static %}
 {%block title%}
 Página inícial
 {%endblock title%}
-
 {% block content%}
-<h1>Lista de Contatos</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="http://127.0.0.1:8000">Início</a></li>
+      <li class="breadcrumb-item"aria-current="page">Contatos</li>
+      <li class="breadcrumb-item active" aria-current="page">Mensagem</li>
+    </ol>
+  </nav>
 
     <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/selecionados">
         {% csrf_token %}
-        <button type="submit" class="btn btn-success">Selecionar</button>
+        <div class="col-lg-12" style="text-align: right;">
+            <a href="http://127.0.0.1:8000" class="btn btn-success">&laquo; Voltar</a>
+            <button type="submit" class="btn btn-success">Enviar Texto &raquo;</button>
+            <a href="http://127.0.0.1:8000/mensagem/upload" class="btn btn-success"> Enviar imagem &raquo;</a>
+        </div>
+        <h1>Lista de Contatos</h1>
         <table class="table">
             <thead>
             <tr>
@@ -35,21 +45,15 @@ Página inícial
             {%endfor%}
             </tbody>
         </table>
-    </form> 
+    </form>
     <script>
-
-        $('#selectAll').click(function (e) {
-            if (this.checked) {
-                // Iterate each checkbox
-                $(':checkbox').each(function () {
-                    this.checked = true;
-                });
-            } else {
-                $(':checkbox').each(function () {
-                    this.checked = false;
-                });
-            }
+        document.getElementById('selectAll')
+                  .addEventListener('change', function () {
+            let checkboxes = 
+                document.querySelectorAll('.form-check-input');
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = this.checked;
+            }, this);
         });
-    
-    </script>
+    </script> 
 {% endblock content%}

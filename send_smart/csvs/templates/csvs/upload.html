@@ -1,88 +1,61 @@
 {%extends 'base.html' %}
-
 {%block title%}
 Página inícial
 {%endblock title%}
 
 {% block content%}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="http://127.0.0.1:8000">Início</a></li>
+      <li class="breadcrumb-item"aria-current="page">Upload</li>
+    </ol>
+  </nav>
+<div class="margin-bottom" style="text-align: right;margin: 0 14px; margin-bottom: 1.2rem">
+    <a href="http://127.0.0.1:8000/" class="btn btn-success">&laquo; Voltar</a>
+</div>
 
-<div class="container-fluid" id="formulario">
-
+<div class="container-fluid " id="formulario">
     <form action="" method="POST" class="form-group" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form.as_p}}
-    {% if messages %}
-        {%for message in messages %}
-        <div class="alert alert-warning" role="alert">
-        {{ message }}
-        </div>
-        {%endfor%}
-    {% endif %}    
-    <button type="submit" class="btn btn-info">Confirmar</button>
+        {% csrf_token %}
+        {{form.as_p}}
+        {% if messages %}
+            {%for message in messages %}
+            <div class="alert alert-warning" role="alert">
+            {{ message }}
+            </div>
+            {%endfor%}
+        {% endif %} 
+        <button type="submit" class="btn btn-info">Upload</button>
 </form>
 </div>
 <div>
     {%if contatos%}
-        Numero de contatos:{{contatos|length}}
-        <h1>Lista de Contatos</h1>
-
-        <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/selecionados">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-success">Selecionar</button>
+        <h1 style="margin-bottom: 1.2rem">Lista de Contatos</h1>
             
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Contato</th>
-                        <th>
-                            <input type="checkbox" class="form-check-input" id="selectAll">
-                        </th>
-                        
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {%for contato in contatos%}
-                    <tr>
-                        <td>{{contato.pk}}</td>
-                        <td>{{contato.nome}}</td>
-                        <td>{{contato.contato}}</td>
-                        <td>
-                                <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}' id="checkbox"></input>
-                        <td>
-                    </tr>
-                    {%endfor%}
-                    </tbody>
-                </table>
-        </form> 
-<script>
-    document.getElementById('selectAll')
-              .addEventListener('change', function () {
-        let checkboxes = 
-            document.querySelectorAll('.form-check-input');
-        checkboxes.forEach(function (checkbox) {
-            checkbox.checked = this.checked;
-        }, this);
-    });
-</script>
-<!-- <script>
-    
+        <div class="card shadow mb-4">
+            <table class="table ">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Contato</th>
+                </tr>
+                </thead>
+                <tbody>
+                {%for contato in contatos%}
+                <tr>
+                    <td>{{contato.pk}}</td>
+                    <td>{{contato.nome}}</td>
+                    <td>{{contato.contato}}</td>
+                   
+                </tr>
+                {%endfor%}
+                </tbody>
+            </table>
 
-    $('#selectAll').click(function (e) {
-        if (this.checked) {
-            // Iterate each checkbox
-            $(':check').each(function () {
-                this.checked = true;
-            });
-        } else {
-            $(':check').each(function () {
-                this.checked = false;
-            });
-        }
-    });
 
-</script> -->
+        </div>        
+        
 {%else%}
             
 {% endif %}  

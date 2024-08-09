@@ -10,7 +10,7 @@ class mensagemForms(forms.Form):
    
 class imagemForms(forms.Form):
    
-   imagem= forms.ImageField (label='',
+   imagem= forms.ImageField (label='Corfimar imagem',
                               widget=forms.FileInput
                               (attrs={'class':'form-control'})
                               )
@@ -18,4 +18,4 @@ class imagemForms(forms.Form):
 
 class enviarForms(forms.Form):
 
-    enviar=forms.BooleanField(label='')
+    enviar=forms.BooleanField(label='Certeza que deseja enviar')

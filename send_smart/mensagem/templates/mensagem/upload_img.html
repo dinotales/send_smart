@@ -5,11 +5,23 @@ Página inícial
 {%endblock title%}
 
 {% block content%}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="http://127.0.0.1:8000">Início</a></li>
+      <li class="breadcrumb-item"aria-current="page"><a href="http://127.0.0.1:8000/contato">Contatos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Upload de imagem</li>
+    </ol>
+  </nav>
 <div>
     <form action="http://127.0.0.1:8000/mensagem/upload" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{form}}
-        <button type="submit" class="btn btn-info">Enviar imagem</button>
+        <div class="margin-bottom" style="text-align: right;margin: 0 14px; margin-bottom: 1.2rem">
+            <a href="http://127.0.0.1:8000/contato" class="btn btn-success">&laquo; Voltar para seleção</a>
+            <a href="http://127.0.0.1:8000/mensagem/imagem" class="btn btn-success">Enviar imagem &raquo;</a>
+        </div>
+        {% for item in form %}
+        {{item}}
+        {% endfor %}
     </form>
     
 </div>

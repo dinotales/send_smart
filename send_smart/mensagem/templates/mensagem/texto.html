@@ -5,22 +5,32 @@ Página inícial
 {%endblock title%}
 
 {% block content%}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="http://127.0.0.1:8000">Início</a></li>
+      <li class="breadcrumb-item"aria-current="page"><a href="http://127.0.0.1:8000/contato">Contatos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Mensagem</li>
+    </ol>
+  </nav>
 <div>
     <form action="" method="POST" class="ui form" enctype="multipart/form-data">
         {% csrf_token %}
+        <div class="margin-bottom" style="text-align: right;margin: 0 14px; margin-bottom: 1.2rem">
+            <a href="http://127.0.0.1:8000/contato" class="btn btn-success">&laquo; Voltar para seleção</a>
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
+        <h2>Mensagem</h2>
         {% for item in form %}
             <div class="fieldWrapper">
                 {{ item }}
             </div>
         {% endfor %}
-        <button type="submit" class="btn btn-info">Enviar</button>
     </form>
 </div>
 <div>
     {%if contatos%}
-        Numero de contatos:{{contatos|length}}
         <h1>Lista de selecionados</h1>
-        <a class="btn btn-secondary" href="http://127.0.0.1:8000/" role="button">Selecionar novamente</a>
+        
             <table class="table">
                 <thead>
                 <tr>

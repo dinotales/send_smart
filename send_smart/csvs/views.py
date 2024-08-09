@@ -13,6 +13,7 @@ from contatos.models import Contato
 def upload_file_view(request): 
 
     form = CsvModelForm (request.POST or None, request.FILES or None)
+    contatos=Contato.objects.all()
     try:
         if form.is_valid():        
             model=Csv()
@@ -38,12 +39,12 @@ def upload_file_view(request):
                         )
                 obj.ativo=True
                 obj.save()
-        contatos=Contato.objects.all()
+        
         return render (request, 'csvs/upload.html',{'form':form,'contatos':contatos})
     except:
             messages.error(request, "Já existe esse arquivo cadastrado")
             messages.get_messages(request).used=True
-            return redirect("/")
+            return render (request, 'csvs/upload.html',{'form':form,'contatos':contatos})
 
 
 
