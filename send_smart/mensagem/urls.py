@@ -9,5 +9,5 @@ urlpatterns=[
     path ('',enviar, name='mensagem'),
     path('upload',upload_image, name='uploadImagem'),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    path('imagem',enviarImagem, name='enviarImagem')
+    path('imagem',enviarImagem, name='enviarImagem'),
 ]
