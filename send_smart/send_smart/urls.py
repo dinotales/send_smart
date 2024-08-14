@@ -26,7 +26,7 @@ urlpatterns = [
     path('upload', include('csvs.urls')),
     path('contato/', include('contatos.urls')),
     path('mensagem/', include('mensagem.urls')),
-    path('contas/', include ('django.contrib.auth.urls')),
+    path('account/', include ('login.urls')),
 
 
 ]

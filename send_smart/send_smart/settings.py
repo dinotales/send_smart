@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'contatos',
     'mensagem',
     'inicio',
+    'login',
 ]
 
 MIDDLEWARE = [
