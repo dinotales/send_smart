@@ -16,6 +16,8 @@ def enviar (request):
     form= mensagemForms(request.POST)
     x=request.session['x']
     contatos=Contato.objects.filter(id__in=x)
+    sucesso=0
+
 
     if form.is_valid():
 
@@ -39,6 +41,7 @@ def enviar (request):
             input=navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div/p[1]')
             input.send_keys (Keys.ENTER)
             time.sleep(10)
+            sucesso+=sucesso
 
 
     return render (request, 'mensagem/texto.html',{'form':form, 'contatos':contatos})
