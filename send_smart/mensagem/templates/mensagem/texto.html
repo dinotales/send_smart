@@ -13,6 +13,13 @@ Página inícial
     </ol>
   </nav>
 <div>
+    {% if messages %}
+        {%for message in messages %}
+            <div class="alert alert-warning" role="alert">
+                {{ message }}
+            </div>
+        {%endfor%}
+    {% endif %}
     <form action="" method="POST" class="ui form" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="margin-bottom" style="text-align: right;margin: 0 14px; margin-bottom: 1.2rem">

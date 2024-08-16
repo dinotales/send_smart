@@ -19,13 +19,46 @@ Página inícial
       <div class="col-md-4">
           <div class="card p-3 mb-2">
             <div class="card-body">
-              <h5 class="card-title">Enviar texto</h5>
-              <p class="card-text">Enviar mensagem</p>
+              <h5 class="card-title">Enviar mensagem </h5>
+              <p class="card-text">Envio de imagem ou texto</p>
               <a href="http://127.0.0.1:8000/contato/" class="btn btn-primary">Entrar</a>
             </div>
           </div>
       </div>
   </div>
+</div>
+
+<div>
+  {%if envios%}
+      <h1>Lista de envios</h1>
+      
+          <table class="table">
+              <thead>
+              <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">mensagem</th>
+                  <th scope="col">Imagem</th>
+                  <th scope="col">Envios com sucesso</th>
+                  <th scope="col">Não enviados</th>
+                  <th scope="col">Data de envio</th>               
+              </tr>
+              </thead>
+              <tbody>
+              {%for envio in envios%}
+              <tr>
+                  <td>{{envio.pk}}</td>
+                  <td>{{envio.mensagem}}</td>
+                  <td>{{envio.img}}</td>
+                  <td>{{envio.sucesso}}</td>
+                  <td>{{envio.erro}}</td>
+                  <td>{{envio.dataEnvio}}</td>
+              </tr>
+              {%endfor%}
+              </tbody>
+          </table>
+  {%else%}
+      
+  {% endif %}
 </div>
   
 {% endblock content%}

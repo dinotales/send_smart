@@ -16,8 +16,8 @@ Página inícial
         {% csrf_token %}
         <div class="col-lg-12" style="text-align: right;">
             <a href="http://127.0.0.1:8000" class="btn btn-success">&laquo; Voltar</a>
-            <button type="submit" class="btn btn-success">Enviar Texto &raquo;</button>
-            <a href="http://127.0.0.1:8000/mensagem/upload" class="btn btn-success"> Enviar imagem &raquo;</a>
+            <button type="submit" class="btn btn-success" name="texto">Enviar Texto &raquo;</button>
+            <button type="submit" class="btn btn-success" name="imagem"> Enviar imagem &raquo;</button>
         </div>
         <h1>Lista de Contatos</h1>
         <table class="table">
