@@ -74,9 +74,6 @@ def upload_image(request):
             model.save()
     imagens=imagem.objects.all()        
     return render (request, 'mensagem/upload_img.html',{'form':form, 'imagens':imagens})
-imagens=imagem.objects.all() 
-for img in imagens:
-    print(img.imagem)
 
 def enviarImagem(request):
         
