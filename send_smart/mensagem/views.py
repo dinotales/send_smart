@@ -119,7 +119,6 @@ def enviarImagem(request):
 
             model= controle()
             model.mensagem=ImgEnvio
-            # model.img=form.cleaned_data ['img']
             model.sucesso=sucessoImg
             model.erro=erroImg
             model.save()
