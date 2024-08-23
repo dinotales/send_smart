@@ -24,7 +24,7 @@ def cadastro(request):
             user =User.objects.create_user(username=username, email=email, password=senha)
             user.save()
 
-            return render(request, 'login/login.html')
+            return redirect('http://127.0.0.1:8000')
 
 def loginView(request):
     
@@ -47,4 +47,4 @@ def loginView(request):
 @login_required
 def logout_view(request):
     logout(request)
-    return render(request, 'login/login.html')
+    return redirect('http://127.0.0.1:8000')
