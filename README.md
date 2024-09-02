@@ -3,15 +3,11 @@
 
 # Tabela de conteúdos
 
-ts
    * [Sobre](#send_smart)
    * [Instalação](#Como_instalar)
    * [Pré-Requisitos](#Pré-requisitos)
-      * [Instalação: Pré-Requisito](###Instalação_do_requeriments)
-      * [Modelo](###Alteração_e_criação_de_modelos)
-   * [Como usar](Como_rodar_o_código?)
+   * [Como usar](#Como_rodar_o_código)
    * [Limitações](#Limitações)
-te
 
 <h4 align="center"> 
 	🚧  Em contrução edição de banco de contatos 🚀 Em construção...  🚧
@@ -29,7 +25,7 @@ pip install -r requirements.txt
 ### Alteração_e_criação_de_modelos
 - Run python manage.py makemigrations to create migrations for those changes
 - Run python manage.py migrate to apply those changes to the database
-## Como_rodar_o_código?
+# Como_rodar_o_código
 - Entrar na pasta do projeto projeto git
 - source .venv/bin/activate
 - Entrar na pasta do projeto projeto django
