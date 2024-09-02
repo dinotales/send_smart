@@ -72,7 +72,7 @@ def upload_image(request):
             model=imagem()
             model.imagem=form.cleaned_data.get('imagem')
             model.save()
-    imagens=imagem.objects.all()        
+    imagens=imagem.objects.all()
     return render (request, 'mensagem/upload_img.html',{'form':form, 'imagens':imagens})
 
 def enviarImagem(request):
@@ -80,7 +80,9 @@ def enviarImagem(request):
         x=request.session['x']
         contatos=Contato.objects.filter(id__in=x)
         imagens=imagem.objects.all()
-        caminho="C:/Users/note/Desktop/teste/ilustracao.png" 
+        for img in imagens:
+             i=img.imagem 
+
         form=enviarForms(request.POST)
         sucessoImg=0
         erroImg=0
@@ -103,7 +105,7 @@ def enviarImagem(request):
                     wait.until (lambda navegador: navegador.find_element(By.CSS_SELECTOR,"span[data-icon='plus']"))
                     navegador.find_element(By.CSS_SELECTOR,"span[data-icon='plus']").click()
                     anexar=navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[2]/li/div/input')
-                    anexar.send_keys("/home/tsuyoshi/code/ilustracao.png")
+                    anexar.send_keys("/home/tsuyoshi/code/send_smart/media/"+str(i))
                     wait =WebDriverWait(navegador, 10)
                     wait.until(lambda navegador: navegador.find_element(By.CSS_SELECTOR,"span[data-icon='send']"))
                     navegador.find_element(By.XPATH, '//span[@data-icon="send"]').click()
