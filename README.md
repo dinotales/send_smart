@@ -7,7 +7,7 @@ Sistema de envio de mensagens via whatsapp com importação de dados de pessoa e
 - Entrar na pasta do projeto git
 - python -m venv .venv
 # Pré-requisitos
-[acessar o requeriments](requeriments.txt)
+[acessar o requeriments](/send_smart/requirements.txt)
 ### Instalação do requeriments
 pip install -r requirements.txt
 ### Alteração e criação de modelos
