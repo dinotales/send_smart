@@ -16,6 +16,7 @@ te
 <h4 align="center"> 
 	🚧  Em contrução edição de banco de contatos 🚀 Em construção...  🚧
 </h4>
+
 # Como_instalar
 ## Configurando o ambiente local:
 ### Instalar o venv (Virtual Enviroment)
