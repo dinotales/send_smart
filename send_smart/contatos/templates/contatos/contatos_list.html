@@ -26,6 +26,7 @@ Página inícial
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Contato</th>
+                <th scope="col">Atualizar</th>
                 <th>
                     <input type="checkbox" class="form-check-input" id="selectAll" />
                 </th>
@@ -38,6 +39,7 @@ Página inícial
                 <td>{{contato.pk}}</td>
                 <td>{{contato.nome}}</td>
                 <td>{{contato.contato}}</td>
+                <td><a href="/contato/{{ contato.id }}/atualizar"><button class="btn btn-primary text-white " type="button">Atualizar</button></a> </td>
                 <td>
                      <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}'></input>
                 <td>

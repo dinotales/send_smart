@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Contato
+from .forms import atualizarForms
 
 
 # Create your views here.
@@ -19,4 +20,31 @@ def selecionar(request):
         return redirect ("http://127.0.0.1:8000/mensagem")
     if 'imagem' in request.POST:
         return redirect ("http://127.0.0.1:8000/mensagem/upload")
+    
+def atualizarContato(request, id_contato):
+    if request.POST:
+
+        form=atualizarForms(request.POST)
+        if form.is_valid():
+            model=to_model(form)
+
+            Contato.objects.filter(pk=id_contato).update(
+                nome=model.nome,
+                contato=model.contato
+            )
+            return redirect('/contato')
+    contato=Contato.objects.get(pk=id_contato)
+    form=atualizarForms(initial=
+                        {'nome':contato.nome,
+                        'contato':contato.contato,
+                        })
+    return render(request,"contatos/atualizar.html",{"form":form})
+
+def to_model(form):
+    model=Contato()
+    model.nome=form.cleaned_data ['nome']
+    model.contato=form.cleaned_data['contato']
+    
+    return model
+
 

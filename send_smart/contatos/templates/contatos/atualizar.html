@@ -1,0 +1,16 @@
+{%extends 'base.html' %}
+{% load static %}
+{%block title%}
+Atualizar contato
+{%endblock title%}
+{% block content%}
+<h2>Atualização Contato</h2>
+<div class="card-body">
+<form action="" method="post" class="forms-sample">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary me-2" value="Cadastrar" name="Cadastrar">Atualizar</button>
+    <button type="submit" class="btn btn-light" name="Cancelar"> Cancelar</button>
+  </form>
+</div>
+{% endblock content%}
