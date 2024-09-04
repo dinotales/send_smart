@@ -48,3 +48,7 @@ def to_model(form):
     return model
 
 
+def deletetarContato(request,id_contato):
+        pessoa=Contato.objects.get(pk=id_contato)
+        pessoa.delete()
+        return redirect('/contato')

@@ -26,7 +26,7 @@ Página inícial
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Contato</th>
-                <th scope="col">Atualizar</th>
+                <th scope="col">Opções</th>
                 <th>
                     <input type="checkbox" class="form-check-input" id="selectAll" />
                 </th>
@@ -39,7 +39,14 @@ Página inícial
                 <td>{{contato.pk}}</td>
                 <td>{{contato.nome}}</td>
                 <td>{{contato.contato}}</td>
-                <td><a href="/contato/{{ contato.id }}/atualizar"><button class="btn btn-primary text-white " type="button">Atualizar</button></a> </td>
+                <td>
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Atualizar
+                      </button> -->
+                    <a href="/contato/{{ contato.id }}/atualizar"><button class="btn btn-primary " type="button">Atualizar</button></a>
+                    
+                    <a href="/contato/{{ contato.id }}/deletar"><button class="btn btn-danger " type="button">Deletar</button></a>    
+                </td>
                 <td>
                      <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}'></input>
                 <td>
@@ -48,6 +55,7 @@ Página inícial
             </tbody>
         </table>
     </form>
+
     <script>
         document.getElementById('selectAll')
                   .addEventListener('change', function () {
