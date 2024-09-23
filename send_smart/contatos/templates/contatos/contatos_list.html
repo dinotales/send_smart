@@ -26,34 +26,34 @@ Página inícial
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Contato</th>
-                <th scope="col">Opções</th>
                 <th>
                     <input type="checkbox" class="form-check-input" id="selectAll" />
                 </th>
+                <th scope="col">Opções</th>
                 
             </tr>
             </thead>
             <tbody>
             {%for contato in contatos%}
-            <tr>
+            <tr id="contato-{{ contato.pk }}" class="contato-row">
                 <td>{{contato.pk}}</td>
                 <td>{{contato.nome}}</td>
                 <td>{{contato.contato}}</td>
                 <td>
-    
-                    <a href="/contato/{{ contato.id }}/atualizar"><button class="btn btn-primary btn-sm" type="button">Atualizar</button></a>
-                    
-                    <a href="/contato/{{ contato.id }}/deletar"><button class="btn btn-danger btn-sm" type="button">Deletar</button></a>    
+                    <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}'></input>
                 </td>
+    </form>
                 <td>
-                     <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}'></input>
-                <td>
-            </tr>
+                    <button hx-get="{% url 'contato:atualizar_contato' contato.pk%}" hx-target="#dialog"class="btn btn-primary btn-sm">Atualizar</button>
+                    <a href="/contato/{{ contato.id }}/atualizar"><button class="btn btn-primary btn-sm" type="button">Atualizar</button></a>         
+                    <a href="/contato/{{ contato.id }}/deletar"><button class="btn btn-danger btn-sm" type="button">Deletar</button></a>
+        
+                </td>
+            </tr>        
             {%endfor%}
             </tbody>
         </table>
-    </form>
-
+    
     <script>
         document.getElementById('selectAll')
                   .addEventListener('change', function () {
@@ -63,5 +63,17 @@ Página inícial
                 checkbox.checked = this.checked;
             }, this);
         });
-    </script> 
+    </script>
+     
+    
+    <!-- Empty toast to show the message -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+        <div id="toast-body" class="toast-body"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+    </div>
+  
 {% endblock content%}

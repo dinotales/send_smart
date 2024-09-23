@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',  include('inicio.urls')),
     path('upload', include('csvs.urls')),
-    path('contato/', include('contatos.urls')),
+    path('contato/', include('contatos.urls', namespace="contato")),
     path('mensagem/', include('mensagem.urls')),
     path('account/', include ('login.urls')),
 
@@ -32,3 +32,4 @@ urlpatterns = [
 ]
 
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

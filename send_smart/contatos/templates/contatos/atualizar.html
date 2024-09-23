@@ -1,15 +1,27 @@
-{%extends 'base.html' %}
 {% load static %}
+
 {%block title%}
 Atualizar contato
 {%endblock title%}
 {% block content%}
-<div class="card-body">
-<form action="" method="post">
+<!-- <form action="" method="post">
     {% csrf_token %}
     {{form}}
     <button type="submit" class="btn btn-primary me-2" value="Cadastrar" name="Cadastrar">Atualizar</button>
     <button type="submit" class="btn btn-light" name="Cancelar"> Cancelar</button>
-  </form>
-</div>
-{% endblock content%}
+  </form> -->
+ <form hx-post="{{ request.path }}" class="modal-content">
+  {% csrf_token %}
+  <div class="modal-header">
+    <h5 class="modal-title">Editar contato</h5>
+  </div>
+  <div class="modal-body">
+    {{ form.as_p }}
+  </div>
+  <div class="modal-footer">
+    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary btn-sm">Salvar</button>
+    <button type="submit" class="btn btn-primary btn-sm">Cancel</button>
+  </div>
+</form>
+
+  {% endblock content%}
