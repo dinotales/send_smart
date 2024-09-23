@@ -40,12 +40,10 @@ Página inícial
                 <td>{{contato.nome}}</td>
                 <td>{{contato.contato}}</td>
                 <td>
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Atualizar
-                      </button> -->
-                    <a href="/contato/{{ contato.id }}/atualizar"><button class="btn btn-primary " type="button">Atualizar</button></a>
+    
+                    <a href="/contato/{{ contato.id }}/atualizar"><button class="btn btn-primary btn-sm" type="button">Atualizar</button></a>
                     
-                    <a href="/contato/{{ contato.id }}/deletar"><button class="btn btn-danger " type="button">Deletar</button></a>    
+                    <a href="/contato/{{ contato.id }}/deletar"><button class="btn btn-danger btn-sm" type="button">Deletar</button></a>    
                 </td>
                 <td>
                      <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}'></input>

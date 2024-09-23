@@ -21,7 +21,7 @@ def selecionar(request):
     if 'imagem' in request.POST:
         return redirect ("http://127.0.0.1:8000/mensagem/upload")
     
-def atualizarContato(request, id_contato):
+def atualizarContato(request,id_contato):
     if request.POST:
 
         form=atualizarForms(request.POST)
