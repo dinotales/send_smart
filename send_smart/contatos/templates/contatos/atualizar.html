@@ -4,14 +4,10 @@
 Atualizar contato
 {%endblock title%}
 {% block content%}
-<!-- <form action="" method="post">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit" class="btn btn-primary me-2" value="Cadastrar" name="Cadastrar">Atualizar</button>
-    <button type="submit" class="btn btn-light" name="Cancelar"> Cancelar</button>
-  </form> -->
+
  <form hx-post="{{ request.path }}" class="modal-content">
   {% csrf_token %}
+  
   <div class="modal-header">
     <h5 class="modal-title">Editar contato</h5>
   </div>
@@ -20,7 +16,7 @@ Atualizar contato
   </div>
   <div class="modal-footer">
     <button type="submit" data-bs-dismiss="modal" class="btn btn-primary btn-sm">Salvar</button>
-    <button type="submit" class="btn btn-primary btn-sm">Cancel</button>
+    <button type="submit" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
   </div>
 </form>
 

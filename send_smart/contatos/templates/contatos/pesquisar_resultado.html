@@ -1,19 +1,19 @@
-{%extends 'base.html' %}
-{% load static %}
-{%block title%}
-Página inícial
-{%endblock title%}
-{% block content%}
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="http://127.0.0.1:8000">Início</a></li>
-      <li class="breadcrumb-item"aria-current="page">Contatos</li>
-      <li class="breadcrumb-item active" aria-current="page">Mensagem</li>
-    </ol>
-  </nav>
-    <div class="col-lg-12" style="text-align: right;">
-        {% include 'contatos/pesquisar.html' %}
-    </div>
+<!-- {% if resultados %}
+
+    {% csrf_token %}
+    <ul class="list-group col-xs-12">
+    {% for resultado in resultados %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ resultado.nome }}
+            <span class="badge badge-success badge-pill" 
+                style="cursor: pointer;"></span>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Sem resultado</p>
+{% endif %} -->
+{% if resultados %}
     <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/selecionados">
         {% csrf_token %}
         <div class="col-lg-12" style="text-align: right;">
@@ -36,7 +36,7 @@ Página inícial
             </tr>
             </thead>
             <tbody>
-            {%for contato in contatos%}
+            {%for contato in resultados%}
             <tr id="contato-{{ contato.pk }}" class="contato-row">
                 <td>{{contato.pk}}</td>
                 <td>{{contato.nome}}</td>
@@ -57,27 +57,6 @@ Página inícial
                 </div>
             
     </Section>
-    
-    <script>
-        document.getElementById('selectAll')
-                  .addEventListener('change', function () {
-            let checkboxes = 
-                document.querySelectorAll('.form-check-input');
-            checkboxes.forEach(function (checkbox) {
-                checkbox.checked = this.checked;
-            }, this);
-        });
-    </script>
-     
-    
-    </div>
-
-    <!-- Placeholder for the modal --> 
-
-    <div id="myModal" class="modal fade">
-        <div id="dialog" class="modal-dialog" hx-target="this">
-  
-        </div>
-      </div>
-  
-{% endblock content%}
+{% else %}
+    <p>Sem resultado</p>
+{% endif %}

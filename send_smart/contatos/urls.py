@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import cadastradoContatos,selecionar,atualizarContato,deletetarContato
+from .views import cadastradoContatos,selecionar,atualizarContato,deletetarContato,pesquisarContato
 
 app_name='contatos'
 
@@ -8,6 +8,7 @@ urlpatterns=[
     path('selecionados',selecionar, name='lista_selecionados'),
     path('<int:id_contato>/atualizar',atualizarContato, name='atualizar_contato'),
     path('<int:id_contato>/deletar',deletetarContato, name='deletar_contato'),
+    path('pesquisar',pesquisarContato, name='pesquisar'),
 
 
 

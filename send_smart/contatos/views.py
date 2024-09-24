@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Contato
 from .forms import atualizarForms
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -32,7 +33,7 @@ def atualizarContato(request,id_contato):
                 nome=model.nome,
                 contato=model.contato
             )
-            return redirect('/contato')
+            return HttpResponse(status=204)
     contato=Contato.objects.get(pk=id_contato)
     form=atualizarForms(initial=
                         {'nome':contato.nome,
@@ -52,3 +53,12 @@ def deletetarContato(request,id_contato):
         pessoa=Contato.objects.get(pk=id_contato)
         pessoa.delete()
         return redirect('/contato')
+
+def pesquisarContato(request):
+    procurar_texto = request.POST.get('pesquisar')
+  
+    resultados = Contato.objects.filter(nome__icontains=procurar_texto)
+    
+
+    context = {"resultados": resultados}
+    return render(request, 'contatos/pesquisar_resultado.html', context)

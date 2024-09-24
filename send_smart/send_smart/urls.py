@@ -27,6 +27,7 @@ urlpatterns = [
     path('contato/', include('contatos.urls', namespace="contato")),
     path('mensagem/', include('mensagem.urls')),
     path('account/', include ('login.urls')),
+    
 
 
 ]
