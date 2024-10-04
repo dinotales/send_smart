@@ -11,40 +11,45 @@ Página inícial
       <li class="breadcrumb-item active" aria-current="page">Mensagem</li>
     </ol>
   </nav>
-    <div class="col-lg-12" style="text-align: right;">
-        {% include 'contatos/pesquisar.html' %}
-    </div>
-    <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/selecionados">
+            
+    <form method="post" action="http://127.0.0.1:8000/contato/selecionados">
         {% csrf_token %}
         <div class="col-lg-12" style="text-align: right;">
             <a href="http://127.0.0.1:8000" class="btn btn-success">&laquo; Voltar</a>
             <button type="submit" class="btn btn-success" name="texto">Enviar Texto &raquo;</button>
             <button type="submit" class="btn btn-success" name="imagem"> Enviar imagem &raquo;</button>
         </div>
-        <h1>Lista de Contatos</h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Contato</th>
-                <th>
-                    <input type="checkbox" class="form-check-input" id="selectAll" />
-                </th>
-                <th scope="col" style="text-align: right;">Opções</th>
-                
-            </tr>
-            </thead>
-            <tbody>
-            {%for contato in contatos%}
-            <tr id="contato-{{ contato.pk }}" class="contato-row">
-                <td>{{contato.pk}}</td>
-                <td>{{contato.nome}}</td>
-                <td>{{contato.contato}}</td>
-                <td>
-                    <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}'></input>
-                </td>
     </form>
+    <form action="{}"></form>
+
+    <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/contato/selecionar">
+        {% csrf_token %} 
+            <h1>Lista de Contatos</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Contato</th>
+                    <th>
+                        <input type="checkbox" class="form-check-input" id="selectAll" />
+                    </th>
+                    <th scope="col" style="text-align: right;">Opções</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                {%for contato in contatos%}
+                <tr id="contato-{{ contato.pk }}" class="contato-row">
+                    <td>{{contato.pk}}</td>
+                    <td>{{contato.nome}}</td>
+                    <td>{{contato.contato}}</td>    
+                        <td>
+                            <input type='checkbox'  class="form-check-input" name='check[]' value='{{contato.pk}}' id="myCheckbox" ></input>
+                            <input class="selecionado" type='hidden' disabled value='F' multiple  name='confirma_presenca_aluno'>
+                        
+                        </td>
+              
                             <td style="text-align: right;">
                                 <button hx-get="{% url 'contato:atualizar_contato' contato.pk%}" hx-target="#dialog"class="btn btn-primary btn-sm">Atualizar</button>       
                                 <a href="/contato/{{ contato.id }}/deletar"><button class="btn btn-danger btn-sm" type="button">Deletar</button></a>
@@ -53,22 +58,19 @@ Página inícial
                         {%endfor%}
                         </tbody>
                     </table>
-
-                </div>
+    </form>      
             
-    </Section>
-    
     <script>
         document.getElementById('selectAll')
                   .addEventListener('change', function () {
-            let checkboxes = 
-                document.querySelectorAll('.form-check-input');
+            let checkboxes = document.querySelectorAll('.form-check-input');
             checkboxes.forEach(function (checkbox) {
                 checkbox.checked = this.checked;
             }, this);
         });
+    
     </script>
-     
+
     
     </div>
 
@@ -79,5 +81,6 @@ Página inícial
   
         </div>
       </div>
+    
   
 {% endblock content%}

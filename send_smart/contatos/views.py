@@ -9,18 +9,27 @@ from django.http import HttpResponse
 
 def cadastradoContatos(request):
 
-    contatos=Contato.objects.all()
+        contatos=Contato.objects.all()
 
-    return render (request,"contatos/contatos_list.html",{'contatos':contatos})
+        context = {"resultados": contatos, 'contatos':contatos} 
 
+        return render (request,"contatos/contatos_list.html", context)
+
+    
+
+def enviarSelecionados(request):
+    if request.POST:
+        if 'texto' in request.POST:
+            return redirect ("http://127.0.0.1:8000/mensagem")
+        if 'imagem' in request.POST:
+            return redirect ("http://127.0.0.1:8000/mensagem/upload")
+    
 def selecionar(request):
     if request.POST:
         x= request.POST.getlist('check[]')
+        print(x)
         request.session ['x']=x
-    if 'texto' in request.POST:
-        return redirect ("http://127.0.0.1:8000/mensagem")
-    if 'imagem' in request.POST:
-        return redirect ("http://127.0.0.1:8000/mensagem/upload")
+    return redirect ("http://127.0.0.1:8000/contato")
     
 def atualizarContato(request,id_contato):
     if request.POST:
@@ -54,11 +63,5 @@ def deletetarContato(request,id_contato):
         pessoa.delete()
         return redirect('/contato')
 
-def pesquisarContato(request):
-    procurar_texto = request.POST.get('pesquisar')
-  
-    resultados = Contato.objects.filter(nome__icontains=procurar_texto)
-    
-
-    context = {"resultados": resultados}
-    return render(request, 'contatos/pesquisar_resultado.html', context)
+def pesquisar(request):
+     pesquisa=Contato.objects.filter(nome__icontain='pesquisa')

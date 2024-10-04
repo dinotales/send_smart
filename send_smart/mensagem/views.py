@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .forms import mensagemForms, imagemForms, enviarForms
-from contatos.views import selecionar
 from contatos.models import Contato
 from mensagem.models import imagem, controle
 from selenium import webdriver
