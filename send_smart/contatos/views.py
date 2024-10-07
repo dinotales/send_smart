@@ -11,7 +11,7 @@ def cadastradoContatos(request):
 
         contatos=Contato.objects.all()
 
-        context = {"resultados": contatos, 'contatos':contatos} 
+        context = {'contatos':contatos} 
 
         return render (request,"contatos/contatos_list.html", context)
 
@@ -64,4 +64,17 @@ def deletetarContato(request,id_contato):
         return redirect('/contato')
 
 def pesquisar(request):
-     pesquisa=Contato.objects.filter(nome__icontain='pesquisa')
+    input= request.POST.get('pesquisa')
+    
+    if input is '' or None:
+        contatos=Contato.objects.all()
+        print(contatos)
+        context = {'contatos':contatos} 
+        return render (request,"contatos/contatos_list.html", context)
+    else:
+        print(input)  
+        contatos=Contato.objects.filter(nome__icontains=input)
+        print(contatos)
+        context = {"contatos": contatos}
+
+        return render (request,"contatos/contatos_list.html", context)
